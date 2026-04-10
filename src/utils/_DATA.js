@@ -1,7 +1,7 @@
-import avatar01 from './assets/avatar-01.jpg';
-import avatar02 from './assets/avatar-02.jpg';
-import avatar03 from './assets/avatar-03.jpg';
-import avatar04 from './assets/avatar-04.jpg';
+import avatar01 from '../assets/avatar-01.jpg';
+import avatar02 from '../assets/avatar-02.jpg';
+import avatar03 from '../assets/avatar-03.jpg';
+import avatar04 from '../assets/avatar-04.jpg';
 
 let users = {
   sarahedo: {
