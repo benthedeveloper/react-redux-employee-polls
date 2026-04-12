@@ -1,6 +1,13 @@
+import AppHeader from "./AppHeader";
+
 const Dashboard = () => {
   return (
-    <div>This is Dashboard</div>
+    <>
+      <AppHeader />
+      <div>
+        TODO dashboard content
+      </div>
+    </>
   );
 };
 
