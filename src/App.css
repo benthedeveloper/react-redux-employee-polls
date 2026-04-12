@@ -1,1 +1,102 @@
-/* TODO App styles */
+.page-content {
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+/* AppHeader */
+.app-header {
+  display: flex;
+  border-bottom: 2px solid gray;
+}
+
+.app-header > :first-child {
+  flex: 1 0 auto;
+}
+
+.app-header > :last-child {
+  /* TODO need styles here? */
+}
+
+/* NavBar */
+.nav-bar {
+  display: flex;
+}
+
+.nav-bar ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-bar ul li {
+  display: block;
+}
+
+.nav-bar ul li a {
+  display: block;
+  padding: 10px;
+}
+
+/* Tabs */
+.tabs [role='tablist'] {
+  display: flex;
+  min-width: 100%;
+}
+
+.tabs [role='tab'] {
+  display: block;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  outline: none;
+  border-width: 2px;
+  border-bottom-width: 0;
+  border-color: gray;
+  border-style: solid;
+  background: none;
+}
+
+.tabs [role="tab"]:focus {
+  outline: 2px solid black;
+  outline-offset: -2px;
+}
+
+.tabs [role='tab']:first-child {
+  border-inline-end: 0;
+}
+
+.tabs [role='tab'][aria-selected='true']::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: white;
+}
+
+.tabs [role='tab'][aria-selected='false'] {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.tabs [role='tabpanel'] {
+  padding: 10px;
+  border: 2px solid gray;
+  /* padding: 5px;
+  border: 2px solid hsl(219deg 1% 72%);
+  border-radius: 0 5px 5px;
+  background: hsl(220deg 43% 99%);
+  min-height: 10em;
+  width: 100%;
+  overflow: auto; */
+}
+
+.tabs [role='tabpanel']:focus {
+  outline-color: transparent;
+}
+
+/* .tabs [role="tabpanel"] p {
+  margin: 0;
+} */

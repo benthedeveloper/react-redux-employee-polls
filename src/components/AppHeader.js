@@ -3,7 +3,7 @@ import ActiveUser from './ActiveUser';
 
 const AppHeader = () => {
   return (
-    <header>
+    <header className='app-header'>
       <div>
         <NavBar />
       </div>
