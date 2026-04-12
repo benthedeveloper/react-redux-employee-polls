@@ -6,6 +6,8 @@
 /* AppHeader */
 .app-header {
   display: flex;
+  align-items: center;
+  padding: 0 10px;
   border-bottom: 2px solid gray;
 }
 
@@ -38,6 +40,29 @@
   padding: 10px;
 }
 
+/* ActiveUser */
+.active-user {
+  display: flex;
+  padding: 10px 0;
+}
+
+.active-user > :first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.active-user img {
+  /* TODO? */
+}
+
+/* Avatar image */
+.avatar-img {
+  display: block;
+  width: 50px;
+  border-radius: 50%;
+}
+
 /* Tabs */
 .tabs [role='tablist'] {
   display: flex;
@@ -57,7 +82,7 @@
   background: none;
 }
 
-.tabs [role="tab"]:focus {
+.tabs [role='tab']:focus {
   outline: 2px solid black;
   outline-offset: -2px;
 }
@@ -96,7 +121,3 @@
 .tabs [role='tabpanel']:focus {
   outline-color: transparent;
 }
-
-/* .tabs [role="tabpanel"] p {
-  margin: 0;
-} */
