@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
+import PollItemList from './PollItemList';
 
-const Dashboard = () => {
+const Dashboard = ({ answeredQuestions, unansweredQuestions }) => {
   const [tabId, setTabId] = useState('tab-0');
   const isFirstRender = useRef(true);
 
@@ -71,7 +73,7 @@ const Dashboard = () => {
             aria-labelledby="tab-0"
             hidden={tabId !== 'tab-0'}
           >
-            <p>Lorem ipsum dolor sit amet</p>
+            <PollItemList questions={unansweredQuestions} />
           </div>
           <div
             id="tabpanel-1"
@@ -79,12 +81,7 @@ const Dashboard = () => {
             aria-labelledby="tab-1"
             hidden={tabId !== 'tab-1'}
           >
-            <p>
-              Here is some text content for answered polls tab. Here is some
-              text content for answered polls tab. Here is some text content for
-              answered polls tab. Here is some text content for answered polls
-              tab. Here is some text content for answered polls tab.
-            </p>
+            <PollItemList questions={answeredQuestions} />
           </div>
         </div>
       </div>
@@ -92,4 +89,33 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = ({ authedUser, users, questions }) => {
+  if (!authedUser) {
+    return {
+      unansweredQuestions: [],
+      answeredQuestions: []
+    };
+  }
+
+  // Determine which questions the logged-in user has/has-not answered
+  // to pass to the PollItemList component
+  const unansweredQuestions = [];
+  const answeredQuestions = [];
+
+  const activeUserAnswers = users[authedUser]?.answers || {};
+
+  for (const questionId in questions) {
+    if (Object.hasOwn(activeUserAnswers, questionId)) {
+      answeredQuestions.push(questions[questionId]);
+    } else {
+      unansweredQuestions.push(questions[questionId]);
+    }
+  }
+
+  return {
+    answeredQuestions,
+    unansweredQuestions
+  };
+};
+
+export default connect(mapStateToProps)(Dashboard);

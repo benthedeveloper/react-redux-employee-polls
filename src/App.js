@@ -8,19 +8,20 @@ import Dashboard from './components/Dashboard';
 import Leaderboard from './components/Leaderboard';
 import CreatePoll from './components/CreatePoll';
 import { handleGetUsers } from './actions/users';
+import { handleGetQuestions } from './actions/questions';
 import { Routes, Route } from 'react-router';
 
 function App({ dispatch, authedUser }) {
   useEffect(() => {
     dispatch(handleGetUsers());
-  }, [dispatch, authedUser]);
+    dispatch(handleGetQuestions());
+  }, [dispatch]);
 
   return (
     <div>
       <Fragment>
         {/* TODO loading? */}
         <div className="container">
-          {/* TODO check if this is the correct logic for routing based on login status */}
           <Routes>
             <Route path="/login" element={<Login />} />
 

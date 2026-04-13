@@ -121,3 +121,15 @@
 .tabs [role='tabpanel']:focus {
   outline-color: transparent;
 }
+
+/* PollItemList */
+.poll-item-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* PollItem */
+.poll-item {
+  display: flex;
+}

@@ -1,4 +1,4 @@
-import { getUsers } from "../utils/api";
+import { getUsers } from '../utils/api';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 
@@ -13,5 +13,6 @@ export function handleGetUsers() {
   return async (dispatch) => {
     const users = await getUsers();
     dispatch(receiveUsers(users));
+    return users;
   };
 }
