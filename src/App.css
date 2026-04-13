@@ -109,13 +109,6 @@
 .tabs [role='tabpanel'] {
   padding: 10px;
   border: 2px solid gray;
-  /* padding: 5px;
-  border: 2px solid hsl(219deg 1% 72%);
-  border-radius: 0 5px 5px;
-  background: hsl(220deg 43% 99%);
-  min-height: 10em;
-  width: 100%;
-  overflow: auto; */
 }
 
 .tabs [role='tabpanel']:focus {
@@ -132,4 +125,42 @@
 /* PollItem */
 .poll-item {
   display: flex;
+  align-items: center;
+}
+
+.poll-item:not(:last-child) {
+  margin-block-end: 10px;
+}
+
+.poll-item > :first-child {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.poll-item .user-info {
+  display: flex;
+  align-items: center;
+  margin-inline-end: 10px;
+}
+
+.poll-item .user-name {
+  font-weight: bold;
+}
+
+.poll-item .avatar-img {
+  margin-inline-end: 10px;
+}
+
+.poll-item .question-info {
+  flex: 1 0 auto;
+  align-self: flex-start;
+}
+
+.poll-item .question-info ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem;
 }
