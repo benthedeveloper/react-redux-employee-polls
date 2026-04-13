@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 const PollItem = ({ question, questionAuthor }) => {
   console.log('question in PollItem:', question);
@@ -27,8 +28,8 @@ const PollItem = ({ question, questionAuthor }) => {
         </div>
       </div>
       <div className="button-container">
-        {/* TODO change this to a Link - to questions/:questionId after setting up route */}
-        <button className="btn">View</button>
+        {/* TODO style like a button */}
+        <Link to={`/questions/${question.id}`} className='btn'>View</Link>
       </div>
     </li>
   );

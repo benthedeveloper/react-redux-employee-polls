@@ -5,6 +5,7 @@ import './App.css';
 import Login from './components/Login';
 import RequireAuth from './components/RequireAuth';
 import Dashboard from './components/Dashboard';
+import PollDetails from './components/PollDetails';
 import Leaderboard from './components/Leaderboard';
 import CreatePoll from './components/CreatePoll';
 import { handleGetUsers } from './actions/users';
@@ -27,6 +28,7 @@ function App({ dispatch, authedUser }) {
 
             <Route element={<RequireAuth authedUser={authedUser} />}>
               <Route path="/" element={<Dashboard />} />
+              <Route path="questions/:question_id" element={<PollDetails />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/add" element={<CreatePoll />} />
             </Route>
