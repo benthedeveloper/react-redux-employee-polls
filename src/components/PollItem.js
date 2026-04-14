@@ -2,9 +2,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 const PollItem = ({ question, questionAuthor }) => {
-  console.log('question in PollItem:', question);
-  console.log('questionAuthor in PollItem:', questionAuthor);
-
   return (
     <li className="poll-item">
       <div>

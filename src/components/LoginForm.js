@@ -31,7 +31,7 @@ const LoginForm = ({ dispatch }) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form className='login-form' onSubmit={handleFormSubmit}>
       <h2>Log in</h2>
       <div>
         <label htmlFor="username">Username: </label>
@@ -40,6 +40,7 @@ const LoginForm = ({ dispatch }) => {
           type="text"
           value={username}
           onChange={handleUsernameInputChange}
+          autoComplete='on'
           required
         ></input>
       </div>

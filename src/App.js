@@ -28,7 +28,7 @@ function App({ dispatch, authedUser }) {
 
             <Route element={<RequireAuth authedUser={authedUser} />}>
               <Route path="/" element={<Dashboard />} />
-              <Route path="questions/:question_id" element={<PollDetails />} />
+              <Route path="/questions/:question_id" element={<PollDetails />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/add" element={<CreatePoll />} />
             </Route>

@@ -1,43 +1,53 @@
-import { useState } from 'react';
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import AppHeader from './AppHeader';
+import PollForm from './PollForm';
 
 const PollDetails = () => {
   const { question_id: questionId } = useParams();
+  const dispatch = useDispatch();
   const question = useSelector((state) => state.questions[questionId]);
-  const [isAnswered, setIsAnswered] = useState(false);
   const users = useSelector((state) => state.users);
   const authedUser = useSelector((state) => state.authedUser);
+
+  const handleSubmit = (selectedAnswer) => {
+    // TODO need to write handleAnswerQuestion action creator and reducer case
+    //dispatch(handleAnswerQuestion(questionId, selectedAnswer));
+    console.log('Submit answer!', { questionId, selectedAnswer });
+  };
 
   // TODO need a 404 page instead
   if (!question) {
     return <div>Question not found</div>;
   }
-  
+
   const activeUser = users[authedUser];
   const questionAuthor = users[question.author];
-
-  // TODO move logic in this "if" statement to a helper function?
-  if (Object.hasOwn(activeUser.answers, questionId)) {
-    setIsAnswered(true);
-  }
+  const isAnswered = Object.hasOwn(activeUser.answers, questionId);
 
   return (
     <>
       <AppHeader />
       <div className="page-content">
-        <div className='poll-details'>
+        <div className="poll-details">
           <header>
-            <h2 class='poll-details-heading'>
+            <h2 className="poll-details-heading">
               <span>Poll by:</span>
-              <img src={questionAuthor.avatarURL} className='avatar-img' alt="" />
-              <span className='author-name'>{questionAuthor.name}</span>
+              <img
+                src={questionAuthor.avatarURL}
+                className="avatar-img"
+                alt=""
+              />
+              <span className="author-name">{questionAuthor.name}</span>
             </h2>
-            {isAnswered && <div className='answered-box'>Answered</div>}
+            {isAnswered && <div className="answered-box">Answered</div>}
           </header>
-          <div class="poll-details-content">
-            <div>TODO render form</div>
+          <div className="poll-details-content">
+            <PollForm
+              question={question}
+              isAnswered={isAnswered}
+              onSubmit={handleSubmit}
+            />
           </div>
         </div>
       </div>

@@ -14,8 +14,6 @@ export function handleLoginUser(id, password) {
     const { authedUser, users } = getState();
 
     if (authedUser) {
-      // TODO remove this temp debug
-      console.log('User already authed: ', authedUser);
       return true;
     }
 
