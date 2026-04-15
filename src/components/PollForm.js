@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-const PollForm = ({ question, isAnswered, onSubmit }) => {
+const PollForm = ({ question, isAnswered, userAnswer, onSubmit }) => {
   const navigate = useNavigate();
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const numVotesOption1 = question.optionOne.votes.length;
@@ -31,6 +31,13 @@ const PollForm = ({ question, isAnswered, onSubmit }) => {
     setSelectedAnswer('');
     navigate('/');
   };
+
+  useEffect(() => {
+    if (isAnswered && userAnswer) {
+      // eslint-disable-next-line
+      setSelectedAnswer(userAnswer);
+    }
+  }, [isAnswered, userAnswer]);
 
   return (
     <form className="poll-form" onSubmit={handleSubmit}>

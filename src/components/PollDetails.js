@@ -2,6 +2,7 @@ import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import AppHeader from './AppHeader';
 import PollForm from './PollForm';
+import { handleSaveQuestionAnswer } from '../actions/questions';
 
 const PollDetails = () => {
   const { question_id: questionId } = useParams();
@@ -11,9 +12,7 @@ const PollDetails = () => {
   const authedUser = useSelector((state) => state.authedUser);
 
   const handleSubmit = (selectedAnswer) => {
-    // TODO need to write handleAnswerQuestion action creator and reducer case
-    //dispatch(handleAnswerQuestion(questionId, selectedAnswer));
-    console.log('Submit answer!', { questionId, selectedAnswer });
+    dispatch(handleSaveQuestionAnswer(questionId, selectedAnswer))
   };
 
   // TODO need a 404 page instead
@@ -24,6 +23,7 @@ const PollDetails = () => {
   const activeUser = users[authedUser];
   const questionAuthor = users[question.author];
   const isAnswered = Object.hasOwn(activeUser.answers, questionId);
+  const userAnswer = activeUser.answers[questionId];
 
   return (
     <>
@@ -46,6 +46,7 @@ const PollDetails = () => {
             <PollForm
               question={question}
               isAnswered={isAnswered}
+              userAnswer={userAnswer}
               onSubmit={handleSubmit}
             />
           </div>
