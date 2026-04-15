@@ -232,3 +232,28 @@ input[type='radio'] {
   display: flex;
   justify-content: flex-end;
 }
+
+/* CreatePoll */
+.create-poll-form {
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.create-poll-form > div {
+  margin-block-end: 10px;
+}
+
+.create-poll-form input {
+  width: 500px;
+  max-width: 100%;
+}
+
+.create-poll .form-buttons {
+  margin-top: 10px;
+}
+
+.create-poll .form-buttons.secondary {
+  display: flex;
+  justify-content: flex-end;
+}

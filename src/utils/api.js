@@ -15,7 +15,10 @@ export function getUsers() {
   return _getUsers();
 }
 
-// TODO handle saving a Question
+// TODO document this function
+export function saveQuestion(question) {
+  return _saveQuestion(question);
+}
 
 // handle saving the answer to a Question
 export function saveQuestionAnswer({ authedUser, questionId, answerId }) {
