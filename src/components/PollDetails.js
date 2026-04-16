@@ -2,6 +2,7 @@ import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import AppHeader from './AppHeader';
 import PollForm from './PollForm';
+import NotFound from './NotFound';
 import { handleSaveQuestionAnswer } from '../actions/questions';
 
 const PollDetails = () => {
@@ -15,9 +16,9 @@ const PollDetails = () => {
     dispatch(handleSaveQuestionAnswer(questionId, selectedAnswer))
   };
 
-  // TODO need a 404 page instead
+  // If the question doesn't exist, show a 404 page
   if (!question) {
-    return <div>Question not found</div>;
+    return <NotFound />;
   }
 
   const activeUser = users[authedUser];

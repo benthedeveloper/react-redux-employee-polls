@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { handleLoginUser } from '../actions/authedUser';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 const LoginForm = ({ dispatch }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,7 +24,7 @@ const LoginForm = ({ dispatch }) => {
     const loginSuccessful = dispatch(handleLoginUser(username, password));
 
     if (loginSuccessful) {
-      navigate('/');
+      navigate(from, { replace: true });
     } else {
       alert('Login failed: Invalid username or password.');
       setUsername('');
