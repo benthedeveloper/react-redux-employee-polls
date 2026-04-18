@@ -5,6 +5,9 @@ import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
   plugins: [react()],
+  optimizeDeps: {
+    include: ['react, react-redux']
+  },
   test: {
     projects: [
       {
