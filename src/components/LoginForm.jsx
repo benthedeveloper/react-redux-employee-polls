@@ -63,4 +63,6 @@ const LoginForm = ({ dispatch }) => {
   );
 };
 
-export default connect()(LoginForm);
+const ConnectedLoginForm = connect()(LoginForm);
+
+export default ConnectedLoginForm;

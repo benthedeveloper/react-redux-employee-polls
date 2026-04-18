@@ -39,4 +39,6 @@ const mapStateToProps = ({ users }, { question }) => {
   };
 };
 
-export default connect(mapStateToProps)(PollItem);
+const ConnectedPollItem = connect(mapStateToProps)(PollItem)
+
+export default ConnectedPollItem;

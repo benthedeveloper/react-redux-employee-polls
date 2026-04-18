@@ -118,4 +118,6 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const ConnectedDashboard = connect(mapStateToProps)(Dashboard);
+
+export default ConnectedDashboard;
