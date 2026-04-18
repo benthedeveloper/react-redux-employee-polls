@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavBar > Will match snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    
+  
+
+
+    <div>
+      <nav
+        class="nav-bar"
+      >
+        <ul>
+          <li>
+            <a
+              data-discover="true"
+              href="/"
+            >
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a
+              data-discover="true"
+              href="/leaderboard"
+            >
+              Leaderboard
+            </a>
+          </li>
+          <li>
+            <a
+              data-discover="true"
+              href="/add"
+            >
+              New Poll
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>,
+  "container": <div>
+    <nav
+      class="nav-bar"
+    >
+      <ul>
+        <li>
+          <a
+            data-discover="true"
+            href="/"
+          >
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a
+            data-discover="true"
+            href="/leaderboard"
+          >
+            Leaderboard
+          </a>
+        </li>
+        <li>
+          <a
+            data-discover="true"
+            href="/add"
+          >
+            New Poll
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>,
+  "debug": [Function],
+  "getByAltText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholder": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "locator": "internal:testid=[data-testid="__vitest_1__"s]",
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
