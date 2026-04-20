@@ -22,9 +22,9 @@ const LoginForm = () => {
   };
 
   // TODO document this function
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const success = dispatch(handleLoginUser(username, password));
+    const success = await dispatch(handleLoginUser(username, password));
 
     if (!success) {
       setLoginError(true);

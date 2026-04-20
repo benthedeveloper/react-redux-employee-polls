@@ -14,15 +14,15 @@ export function handleLoginUser(id, password) {
     const { authedUser, users } = getState();
 
     if (authedUser) {
-      return true;
+      return Promise.resolve(true);
     }
 
     if (users[id]?.password === password) {
       dispatch(setAuthedUser(id));
-      return true;
+      return Promise.resolve(true);
     }
 
-    return false;
+    return Promise.resolve(false);
   };
 }
 

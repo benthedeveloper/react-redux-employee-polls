@@ -1,28 +1,15 @@
 import { render } from 'vitest-browser-react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { userEvent } from 'vitest/browser';
 import { Provider } from 'react-redux';
 import { store } from '../../store';
 import { MemoryRouter } from 'react-router';
 import LoginForm from '../../components/LoginForm';
-import { handleLoginUser } from '../../actions/authedUser';
-
-vi.mock('../../actions/authedUser', async () => {
-  const actual = await vi.importActual('../../actions/authedUser');
-
-  return {
-    ...actual,
-    handleLoginUser: vi.fn(),
-  };
-});
 
 describe('LoginForm', () => {
-  it('Will display an alert if login fails', async () => {
-    // Set up spy and mock implementation to prevent blocking
-    const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {});
-    const expectedAlertMessage = 'Login failed: Invalid username or password.';
-
-    handleLoginUser.mockReturnValue(false);
+  it('Will display an alert element if login fails', async () => {
+    const expectedAlertMessage =
+      'Invalid username or password. Please try again.';
 
     const screen = await render(
       <Provider store={store}>
@@ -41,10 +28,7 @@ describe('LoginForm', () => {
     await userEvent.type(passwordInput, 'invalidPassword');
     await userEvent.click(submitButton);
 
-    // Assert the alert was called
-    expect(alertMock).toHaveBeenCalledWith(expectedAlertMessage);
-
-    // Clean up the spy
-    alertMock.mockRestore();
+    // Assert the alert element renders
+    await expect(screen.getByRole('alert')).toHaveTextContent(expectedAlertMessage);
   });
 });
