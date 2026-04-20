@@ -48,4 +48,6 @@ const mapStateToProps = ({ authedUser }) => ({
   authedUser,
 });
 
-export default connect(mapStateToProps)(App);
+const ConnectedApp = connect(mapStateToProps)(App);
+
+export default ConnectedApp;

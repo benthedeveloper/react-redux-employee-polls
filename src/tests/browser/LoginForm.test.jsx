@@ -7,6 +7,26 @@ import { MemoryRouter } from 'react-router';
 import LoginForm from '../../components/LoginForm';
 
 describe('LoginForm', () => {
+  it('Will have a heading, username, password, and submit button on the page', async () => {
+    const screen = await render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <LoginForm />
+        </MemoryRouter>
+      </Provider>,
+    );
+
+    const heading = await screen.getByRole('heading');
+    const usernameInput = await screen.getByLabelText(/username/i);
+    const passwordInput = await screen.getByLabelText(/password/i);
+    const submitButton = await screen.getByRole('button', { name: /submit/i });
+
+    await expect(heading).toBeInTheDocument();
+    await expect(usernameInput).toBeInTheDocument();
+    await expect(passwordInput).toBeInTheDocument();
+    await expect(submitButton).toBeInTheDocument();
+  });
+
   it('Will display an alert element if login fails', async () => {
     const expectedAlertMessage =
       'Invalid username or password. Please try again.';

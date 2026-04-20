@@ -20,14 +20,13 @@ const Leaderboard = () => {
     return bScore - aScore;
   });
 
-  // TODO need to add AppHeader and container for page content
   return (
     <>
       <AppHeader />
       <div className="page-content">
         <div className="leaderboard">
           <h2>Leaderboard</h2>
-          <ol className="leaderboard-list">
+          <ol className="leaderboard-list" data-testid="leaderboard-list">
             {sortedUsersArray.map((user) => (
               <li key={user.id} className="leaderboard-list-item">
                 <div className="user-info">
@@ -35,8 +34,8 @@ const Leaderboard = () => {
                   <span>{user.name}</span>
                 </div>
                 <div className="polls-info">
-                  <span>Polls created: {getNumPollsCreated(user)}</span>
-                  <span>Polls answered: {getNumPollsAnswered(user)}</span>
+                  <span>Polls created: <span className='num-polls-created'>{getNumPollsCreated(user)}</span></span>
+                  <span>Polls answered: <span className='num-polls-answered'>{getNumPollsAnswered(user)}</span></span>
                 </div>
               </li>
             ))}
