@@ -1,4 +1,5 @@
 import { getQuestions, saveQuestion, saveQuestionAnswer } from '../utils/api';
+import { hideLoading, showLoading } from '../actions/loading';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
@@ -13,16 +14,24 @@ export function receiveQuestions(questions) {
 
 export function handleGetQuestions() {
   return async (dispatch) => {
-    const questions = await getQuestions();
-    dispatch(receiveQuestions(questions));
-    return questions;
+    dispatch(showLoading());
+
+    try {
+      const questions = await getQuestions();
+      dispatch(receiveQuestions(questions));
+      return questions;
+    } catch (error) {
+      console.warn('Error in handleGetQuestions:', error);
+    } finally {
+      dispatch(hideLoading());
+    }
   };
 }
 
 function addQuestion(formattedQuestion) {
   return {
     type: ADD_QUESTION,
-    formattedQuestion
+    formattedQuestion,
   };
 }
 
@@ -30,7 +39,7 @@ export function handleSaveQuestion(optionOneText, optionTwoText) {
   return async (dispatch, getState) => {
     const { authedUser } = getState();
 
-    // TODO dispatch disableForm or loading? (so user can't attempt submit again right away)
+    dispatch(showLoading());
 
     try {
       const formattedQuestion = await saveQuestion({
@@ -44,7 +53,7 @@ export function handleSaveQuestion(optionOneText, optionTwoText) {
       console.warn('Error in handleSaveQuestion:', error);
       alert('Error saving new poll. Please try again.');
     } finally {
-      // TODO re-enable form or turn off "loading" state
+      dispatch(hideLoading());
     }
   };
 }
@@ -62,7 +71,7 @@ export function handleSaveQuestionAnswer(questionId, answerId) {
   return async (dispatch, getState) => {
     const { authedUser } = getState();
 
-    // TODO dispatch disableForm or loading? (so user can't attempt submit again right away)
+    dispatch(showLoading());
 
     try {
       const response = await saveQuestionAnswer({
@@ -76,7 +85,7 @@ export function handleSaveQuestionAnswer(questionId, answerId) {
       console.warn('Error in handleSaveQuestionAnswer:', error);
       alert('Error saving answer. Please try again.');
     } finally {
-      // TODO re-enable form or turn off "loading" state
+      dispatch(hideLoading());
     }
   };
 }

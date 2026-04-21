@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import AppHeader from './AppHeader';
-import { showLoading, hideLoading } from '../actions/loading';
 import { handleSaveQuestion } from '../actions/questions';
 import { useDispatch } from 'react-redux';
 
@@ -19,14 +18,11 @@ const CreatePoll = () => {
       return;
     }
 
-    dispatch(showLoading());
     try {
       await dispatch(handleSaveQuestion(optionOneText, optionTwoText));
       navigate('/');
     } catch (error) {
       console.warn('Error creating new poll:', error);
-    } finally {
-      dispatch(hideLoading());
     }
   };
 

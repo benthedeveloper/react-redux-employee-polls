@@ -22,8 +22,10 @@ describe('Leaderboard', () => {
     // Populate testStore with users, questions, and set authedUser
     const validUsername = 'sarahedo';
     const validPassword = 'password123';
-    await testStore.dispatch(handleGetUsers());
-    await testStore.dispatch(handleGetQuestions());
+    await Promise.all([
+      testStore.dispatch(handleGetUsers()),
+      testStore.dispatch(handleGetQuestions()),
+    ]);
     await testStore.dispatch(handleLoginUser(validUsername, validPassword));
   });
 
