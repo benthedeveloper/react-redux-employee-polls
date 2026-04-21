@@ -11,6 +11,24 @@
   padding: 0 10px;
 }
 
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:disabled,
+.btn.disabled {
+  border-color: rgba(128, 128, 128, 0.5);
+  color: rgba(128, 128, 128, 0.5);
+  cursor: not-allowed;
+}
+
 input[type='radio'] {
   margin-inline-end: 5px;
 }
@@ -100,6 +118,13 @@ input[type='radio'] {
 .nav-bar ul li a {
   display: block;
   padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.nav-bar ul li a.active {
+  font-weight: bold;
+  border-bottom: 2px solid black;
 }
 
 /* ActiveUser */

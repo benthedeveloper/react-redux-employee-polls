@@ -71,7 +71,7 @@ const LoginForm = () => {
         ></input>
       </div>
       {loginError && <p role="alert">Invalid username or password. Please try again.</p>}
-      <button type="submit" disabled={!username || !password}>
+      <button type="submit" className='btn' disabled={!username || !password}>
         Submit
       </button>
     </form>

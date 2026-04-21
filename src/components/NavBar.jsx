@@ -1,12 +1,12 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 
 const NavBar = () => {
   return (
     <nav className="nav-bar">
       <ul>
-        <li><Link to="/">Dashboard</Link></li>
-        <li><Link to="/leaderboard">Leaderboard</Link></li>
-        <li><Link to="/add">New Poll</Link></li>
+        <li><NavLink to="/">Dashboard</NavLink></li>
+        <li><NavLink to="/leaderboard">Leaderboard</NavLink></li>
+        <li><NavLink to="/add">New Poll</NavLink></li>
       </ul>
     </nav>
   );
