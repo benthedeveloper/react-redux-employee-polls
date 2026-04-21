@@ -25,7 +25,6 @@ const PollItem = ({ question, questionAuthor }) => {
         </div>
       </div>
       <div className="button-container">
-        {/* TODO style like a button */}
         <Link to={`/questions/${question.id}`} className='btn'>View</Link>
       </div>
     </li>

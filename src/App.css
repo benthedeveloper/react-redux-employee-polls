@@ -41,7 +41,7 @@ input[type='radio'] {
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0); /* Legacy support */
-  clip-path: inset(50%);  /* Modern standard */
+  clip-path: inset(50%); /* Modern standard */
   white-space: nowrap;
   border: 0;
 }
@@ -70,18 +70,12 @@ input[type='radio'] {
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* LoginForm */
 .login-form > div {
   margin-block-end: 10px;
 }
 
-.login-form [role="alert"] {
+.login-form [role='alert'] {
   color: red;
 }
 
@@ -365,4 +359,11 @@ input[type='radio'] {
   align-items: center;
   flex-wrap: wrap;
   gap: 5px 20px;
+}
+
+/* Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
