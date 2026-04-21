@@ -22,10 +22,10 @@ const CreatePoll = () => {
     dispatch(showLoading());
     try {
       await dispatch(handleSaveQuestion(optionOneText, optionTwoText));
-      dispatch(hideLoading());
       navigate('/');
     } catch (error) {
       console.warn('Error creating new poll:', error);
+    } finally {
       dispatch(hideLoading());
     }
   };

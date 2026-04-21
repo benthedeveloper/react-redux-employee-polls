@@ -2,6 +2,10 @@ import PollItem from './PollItem';
 
 const PollItemList = ({ questions }) => {
   const sortedQuestions = questions.sort((a, b) => b.timestamp - a.timestamp);
+
+  if (!sortedQuestions.length) {
+    return <p className="no-polls-message">No polls to display</p>;
+  }
   
   return (
     <ul className="poll-item-list">

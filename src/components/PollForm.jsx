@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 const PollForm = ({ question, isAnswered, userAnswer, onSubmit }) => {
   const navigate = useNavigate();
+  const isLoading = useSelector((state) => state.isLoading);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const numVotesOption1 = question.optionOne.votes.length;
   const numVotesOption2 = question.optionTwo.votes.length;
@@ -41,7 +43,7 @@ const PollForm = ({ question, isAnswered, userAnswer, onSubmit }) => {
 
   return (
     <form className="poll-form" onSubmit={handleSubmit}>
-      <fieldset disabled={isAnswered}>
+      <fieldset disabled={isAnswered || isLoading}>
         <legend>Would you rather:</legend>
         <div>
           <div className="controls-wrapper">

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { handleLoginUser } from '../actions/authedUser';
 import { useNavigate, useLocation } from 'react-router';
+import { hideLoading, showLoading } from '../actions/loading';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,10 @@ const LoginForm = () => {
   // TODO document this function
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    dispatch(showLoading());
+
     const success = await dispatch(handleLoginUser(username, password));
+    dispatch(hideLoading());
 
     if (!success) {
       setLoginError(true);

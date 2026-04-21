@@ -4,6 +4,7 @@ import AppHeader from './AppHeader';
 import PollForm from './PollForm';
 import NotFound from './NotFound';
 import { handleSaveQuestionAnswer } from '../actions/questions';
+import { hideLoading, showLoading } from '../actions/loading';
 
 const PollDetails = () => {
   const { question_id: questionId } = useParams();
@@ -12,8 +13,15 @@ const PollDetails = () => {
   const users = useSelector((state) => state.users);
   const authedUser = useSelector((state) => state.authedUser);
 
-  const handleSubmit = (selectedAnswer) => {
-    dispatch(handleSaveQuestionAnswer(questionId, selectedAnswer))
+  const handleSubmit = async (selectedAnswer) => {
+    dispatch(showLoading());
+    try {
+      await dispatch(handleSaveQuestionAnswer(questionId, selectedAnswer));
+    } catch (error) {
+      console.warn('Error saving question answer:', error);
+    } finally {
+      dispatch(hideLoading());
+    }
   };
 
   // If the question doesn't exist, show a 404 page
