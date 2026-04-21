@@ -4,12 +4,20 @@ import AppHeader from './AppHeader';
 const Leaderboard = () => {
   const users = useSelector((state) => state.users);
 
-  // TODO document this method
+  /**
+   * Gets the number of polls created by a user
+   * @param {Object} user - The user object
+   * @returns {number} The number of polls created by the user
+   */
   const getNumPollsCreated = (user) => {
     return user.questions?.length || 0;
   };
 
-  // TODO document this method
+  /**
+   * Gets the number of polls answered by a user
+   * @param {Object} user - The user object
+   * @returns {number} The number of polls answered by the user
+   */
   const getNumPollsAnswered = (user) => {
     return Object.keys(user.answers)?.length || 0;
   };

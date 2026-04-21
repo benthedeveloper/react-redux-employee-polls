@@ -7,7 +7,10 @@ const Dashboard = ({ answeredQuestions, unansweredQuestions }) => {
   const [tabId, setTabId] = useState('tab-0');
   const isFirstRender = useRef(true);
 
-  // TODO document this function
+  /**
+   * Handles click on a tab to switch between unanswered and answered polls
+   * @param {Object} event Click event
+   */
   const handleTabClick = (event) => {
     const tabIdClicked = event.currentTarget.id;
     const targetId = event.currentTarget.getAttribute('aria-controls');

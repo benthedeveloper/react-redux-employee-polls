@@ -32,8 +32,6 @@ export default function questions(state = {}, action) {
         },
       };
 
-    // TODO implement other cases like ADD_QUESTION, etc.
-
     default:
       return state;
   }

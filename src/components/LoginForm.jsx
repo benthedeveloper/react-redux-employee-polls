@@ -21,7 +21,10 @@ const LoginForm = () => {
     setPassword(event.target.value);
   };
 
-  // TODO document this function
+  /**
+   * Handles form submission for login
+   * @param {Object} event - The form submission event
+   */
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -34,7 +37,9 @@ const LoginForm = () => {
     }
   };
 
-  // TODO document this function
+  /**
+   * Redirects the user to the previous page after successful login
+   */
   useEffect(() => {
     if (authedUser) {
       navigate(from, { replace: true });
