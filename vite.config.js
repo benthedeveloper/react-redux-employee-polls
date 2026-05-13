@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     base: env.VITE_BASE_PATH,
     plugins: [react()],
     optimizeDeps: {
-      include: ['react, react-redux'],
+      include: ['react', 'react-redux'],
     },
     test: {
       projects: [
