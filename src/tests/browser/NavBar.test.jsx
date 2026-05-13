@@ -1,24 +1,15 @@
-import { render } from 'vitest-browser-react';
+import { page } from 'vitest/browser';
 import { describe, it, expect } from 'vitest';
 import NavBar from '../../components/NavBar';
-import { MemoryRouter } from 'react-router';
 
 describe('NavBar', () => {
   it('Will match snapshot', async () => {
-    const screen = await render(
-      <MemoryRouter>
-        <NavBar />
-      </MemoryRouter>,
-    );
-    expect(screen).toMatchSnapshot();
+    const screen = await page.renderWithProviders(<NavBar />);
+    expect(screen.container).toMatchSnapshot();
   });
 
   it('Will render the expected links', async () => {
-    const screen = await render(
-      <MemoryRouter>
-        <NavBar />
-      </MemoryRouter>,
-    );
+    const screen = await page.renderWithProviders(<NavBar />);
 
     const expectedLinks = [
       { text: 'Dashboard', href: '/' },

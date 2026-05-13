@@ -1,42 +1,13 @@
-import { render } from 'vitest-browser-react';
-import { describe, it, expect, beforeEach } from 'vitest';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router';
+import { describe, it, expect } from 'vitest';
+import { page } from 'vitest/browser';
 import Leaderboard from '../../components/Leaderboard';
-import { handleGetUsers } from '../../actions/users';
-import { handleGetQuestions } from '../../actions/questions';
-import { handleLoginUser } from '../../actions/authedUser';
-import { createStore } from '@reduxjs/toolkit';
-import reducer from '../../reducers';
-import { thunk } from 'redux-thunk';
-import { applyMiddleware } from '@reduxjs/toolkit';
+import { authenticatedState } from '../fixtures/state';
 
 describe('Leaderboard', () => {
-  let testStore = {};
-
-  beforeEach(async () => {
-    // Create a testMiddleware without logger for testing
-    const testMiddleware = applyMiddleware(thunk);
-    // Create a test store
-    testStore = createStore(reducer, testMiddleware);
-    // Populate testStore with users, questions, and set authedUser
-    const validUsername = 'sarahedo';
-    const validPassword = 'password123';
-    await Promise.all([
-      testStore.dispatch(handleGetUsers()),
-      testStore.dispatch(handleGetQuestions()),
-    ]);
-    await testStore.dispatch(handleLoginUser(validUsername, validPassword));
-  });
-
   it('Will render a heading and an ordered list', async () => {
-    const screen = await render(
-      <Provider store={testStore}>
-        <MemoryRouter>
-          <Leaderboard />
-        </MemoryRouter>
-      </Provider>,
-    );
+    const screen = await page.renderWithProviders(<Leaderboard />, {
+      preloadedState: authenticatedState,
+    });
 
     const heading = await screen.getByRole('heading');
     const list = await screen.getByTestId('leaderboard-list');
@@ -46,16 +17,11 @@ describe('Leaderboard', () => {
   });
 
   it('Will render avatar, name, and number of polls created and polls answered', async () => {
-      testStore.getState();
     const expectedNumItems = 4;
 
-    const screen = await render(
-      <Provider store={testStore}>
-        <MemoryRouter>
-          <Leaderboard />
-        </MemoryRouter>
-      </Provider>,
-    );
+    const screen = await page.renderWithProviders(<Leaderboard />, {
+      preloadedState: authenticatedState,
+    });
 
     const listItems = await screen
       .getByTestId('leaderboard-list')
@@ -68,8 +34,12 @@ describe('Leaderboard', () => {
     const firstItem = listItems[0];
     const avatarImg = firstItem.querySelector('img');
     const name = firstItem.querySelector('img + span');
-    const numPollsCreated = Number(firstItem.querySelector('.num-polls-created').textContent);
-    const numPollsAnswered = Number(firstItem.querySelector('.num-polls-answered').textContent);
+    const numPollsCreated = Number(
+      firstItem.querySelector('.num-polls-created').textContent,
+    );
+    const numPollsAnswered = Number(
+      firstItem.querySelector('.num-polls-answered').textContent,
+    );
 
     await expect(avatarImg).toBeInTheDocument();
     await expect(name).toBeInTheDocument();

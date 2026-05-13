@@ -1,20 +1,10 @@
-import { render } from 'vitest-browser-react';
 import { describe, it, expect } from 'vitest';
-import { userEvent } from 'vitest/browser';
-import { Provider } from 'react-redux';
-import { store } from '../../store';
-import { MemoryRouter } from 'react-router';
+import { userEvent, page } from 'vitest/browser';
 import LoginForm from '../../components/LoginForm';
 
 describe('LoginForm', () => {
   it('Will have a heading, username, password, and submit button on the page', async () => {
-    const screen = await render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <LoginForm />
-        </MemoryRouter>
-      </Provider>,
-    );
+    const screen = await page.renderWithProviders(<LoginForm />);
 
     const heading = await screen.getByRole('heading');
     const usernameInput = await screen.getByLabelText(/username/i);
@@ -31,13 +21,7 @@ describe('LoginForm', () => {
     const expectedAlertMessage =
       'Invalid username or password. Please try again.';
 
-    const screen = await render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <LoginForm />
-        </MemoryRouter>
-      </Provider>,
-    );
+    const screen = await page.renderWithProviders(<LoginForm />);
 
     const usernameInput = await screen.getByLabelText(/username/i);
     const passwordInput = await screen.getByLabelText(/password/i);
@@ -49,6 +33,8 @@ describe('LoginForm', () => {
     await userEvent.click(submitButton);
 
     // Assert the alert element renders
-    await expect(screen.getByRole('alert')).toHaveTextContent(expectedAlertMessage);
+    await expect(screen.getByRole('alert')).toHaveTextContent(
+      expectedAlertMessage,
+    );
   });
 });

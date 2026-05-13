@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => {
               'src/tests/**/*.browser.{test,spec}.jsx',
             ],
             name: 'browser',
+            setupFiles: ['./src/tests/browser/setup.js'],
             browser: {
               enabled: true,
               provider: playwright(),
